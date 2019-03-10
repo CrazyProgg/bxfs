@@ -15,7 +15,7 @@ public class BxComponentTemplateReference extends BxReference
 	@Nullable
 	@Override
 	public PsiElement resolve() {
-		VirtualFile componentTemplateFile = BxCore.getComponent(getElement()).getComponentTemplateFile("{template.php,template.twig,template.tpl}"); if (componentTemplateFile != null)
+		VirtualFile componentTemplateFile = BxCore.getComponent(getElement()).getComponentTemplateFile("{template.php,template.twig,template.tpl,template.blade}"); if (componentTemplateFile != null)
 			return getElement().getManager().findFile(componentTemplateFile);
 		return null;
 	}

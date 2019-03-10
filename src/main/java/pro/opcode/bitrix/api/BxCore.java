@@ -16,7 +16,7 @@ import java.util.List;
 public class BxCore
 {
 	private Project project;
-	private static final String[] BitrixPaths = {"local", "bitrix"};
+	private static final String[] BitrixPaths = {"app/local", "bitrix"};
 
 	public BxCore(Project project) {
 		this.project = project;
@@ -32,7 +32,7 @@ public class BxCore
 	/* Проверяет, есть ли в текущем проекте папка (bitrix|local)/components/bitrix */
 	public boolean isComponentsFolderExists() {
 		for (String bitrixPath : BitrixPaths) {
-			VirtualFile componentsDir = project.getBaseDir().findFileByRelativePath(bitrixPath + "/components/bitrix");
+			VirtualFile componentsDir = project.getBaseDir().findFileByRelativePath(bitrixPath + "/components");
 			if (componentsDir != null && componentsDir.isDirectory() && componentsDir.exists())
 				return true;
 		}
@@ -127,6 +127,7 @@ public class BxCore
 
 	@Nullable
 	public static VirtualFile[] findFiles(VirtualFile baseDir, String path, String... vars) {
+
 		if (vars.length > 0)
 			path = String.format(path, vars);
 
@@ -141,9 +142,15 @@ public class BxCore
 			for (VirtualFile parent : result) {
 				/* Перечисления */
 				if (pathComponent.startsWith("{") && pathComponent.endsWith("}")) {
-					for (String enumeration : pathComponent.substring(1, pathComponent.length() - 1).split(","))
+					for (String enumeration : pathComponent.substring(1, pathComponent.length() - 1).split(",")) {
 						if ((child = parent.findChild(enumeration)) != null)
 							buffer.add(child);
+						VirtualFile app = parent.findChild("app");
+						if (app!=null && enumeration.equals("local")) {
+							if ((child = app.findChild(enumeration)) != null)
+								buffer.add(child);
+						}
+					}
 					continue;
 				}
 				/* Любой деть */

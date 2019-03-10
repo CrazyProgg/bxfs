@@ -157,6 +157,11 @@ public class BxReferencePatterns
 				if (method.getClassReference() instanceof Variable && !method.isStatic())
 					return "APPLICATION".equals(method.getClassReference().getName())
 						&& "IncludeComponent".equals(method.getName());
+
+				/* @bxComponent */
+				if (method.getClassReference() instanceof Variable && !method.isStatic())
+					return "bxComponent".equals(method.getClassReference().getName())
+						;
 			}
 		}
 		return false;

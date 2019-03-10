@@ -20,6 +20,9 @@ Bitrix is popular in the former Soviet Union region, so there is no much sense t
 
 ### История версий ###
 
+**0.2**
+* Добавлена поддержка bitrix-skeleton
+
 **0.1.8**
 * Исправлена ошибка Short name 'PhpIncludeInspection' is not unique для новой версии PhpStorm
 

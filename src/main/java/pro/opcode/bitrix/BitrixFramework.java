@@ -25,7 +25,7 @@ public class BitrixFramework implements ProjectComponent, ModuleRootListener {
 	private static final HashMap<String, String> templates = new HashMap<>();
 
 	static {
-		bxIcon = IconLoader.getIcon("/pro/opcode/bitrix/resources/icon.bx.png");
+		bxIcon = IconLoader.getIcon("/icon.bx.png");
 
 		templates.put("Битрикс - Страница", "bxSimplePage");
 		templates.put("Битрикс - Страница (модерн)", "bxSimplePageModern");
@@ -102,7 +102,7 @@ public class BitrixFramework implements ProjectComponent, ModuleRootListener {
 	private Optional<String> getResourceFileContent(@NotNull String resourceFilePath) {
 		try {
 			return Optional.of(ResourceUtil.loadText(BitrixFramework.class.getResource(
-				"/pro/opcode/bitrix/resources/" + resourceFilePath
+				"/" + resourceFilePath
 			)));
 		}
 		catch (IOException e) {

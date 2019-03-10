@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.4.4'
+}
+
+group 'pro.opcode.bitrix'
+version '0.2'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+intellij {
+    version 'IU-2018.3.5'
+    plugins = [
+            "com.jetbrains.php:183.5429.47",
+            "com.jetbrains.php.blade:183.3795.24"
+    ]
+    sandboxDirectory = "$project.buildDir/myCustom-sandbox"
+    pluginName 'Skeleton Plugin'
+}
+patchPluginXml {
+    changeNotes """
+      First version
+      of this plugin"""
+}
